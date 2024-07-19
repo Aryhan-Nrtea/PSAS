@@ -29,7 +29,7 @@
 </style>
 <div class="col-lg-12 py-5">
     <div class="contain-fluid">
-        <div class="card card-outline card-navy shadow rounded-0">
+        <div class="card card-outline card-navy shadow rounded-0" style="border-color: #800000;">
             <div class="card-body rounded-0">
                 <div class="container-fluid">
                     <h3 class="text-center">Welcome</h3>

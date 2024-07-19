@@ -45,7 +45,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                         <img src="<?= validate_image(isset($banner_path) ? $banner_path : "") ?>" alt="Banner Image" id="banner-img" class="img-fluid border bg-gradient-dark">
                     </center>
                     <fieldset>
-                        <legend class="text-navy">Project Year:</legend>
+                        <legend class="text-navy">Thesis Year:</legend>
                         <div class="pl-4"><large><?= isset($year) ? $year : "----" ?></large></div>
                     </fieldset>
                     <fieldset>
@@ -53,11 +53,11 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                         <div class="pl-4"><large><?= isset($abstract) ? html_entity_decode($abstract) : "" ?></large></div>
                     </fieldset>
                     <fieldset>
-                        <legend class="text-navy">Members:</legend>
+                        <legend class="text-navy">Thesis Members:</legend>
                         <div class="pl-4"><large><?= isset($members) ? html_entity_decode($members) : "" ?></large></div>
                     </fieldset>
                     <fieldset>
-                        <legend class="text-navy">Project Document:</legend>
+                        <legend class="text-navy">Thesis Document:</legend>
                         <div class="pl-4">
                             <iframe src="<?= isset($document_path) ? base_url.$document_path : "" ?>" frameborder="0" id="document_field" class="text-center w-100">Loading Document ...</iframe>
                         </div>

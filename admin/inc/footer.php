@@ -55,8 +55,8 @@
     }
   })
 </script>
-<footer class="main-footer text-sm">
-        <strong>Eastern Visayas State University - Carigara Campus © <?php echo date('Y') ?>. 
+<footer class="main-footer text-sm" style="background-color: #800000; color: white;">
+        <strong>Eastern Visayas State University - Carigara Campus. 
         <!-- <a href=""></a> -->
         </strong>
         All rights reserved.

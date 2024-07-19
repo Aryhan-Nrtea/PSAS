@@ -13,12 +13,12 @@ foreach($user->fetch_array() as $k =>$v){
 	}
 </style>
 <div class="content py-4">
-    <div class="card card-outline card-primary shadow rounded-0">
+    <div class="card card-outline card-primary shadow rounded-0" style="border-color: #800000;">
         <div class="card-header rounded-0">
             <h5 class="card-title">Your Information:</h5>
             <div class="card-tools">
-                <a href="./?page=my_archives" class="btn btn-default bg-primary btn-flat"><i class="fa fa-archive"></i> My Archives</a>
-                <a href="./?page=manage_account" class="btn btn-default bg-navy btn-flat"><i class="fa fa-edit"></i> Update Account</a>
+                <a href="./?page=my_archives" class="btn btn-default btn-primary" style="background-color: #800000; color: white;"><i class="fa fa-archive"></i> My Archives</a>
+                <a href="./?page=manage_account" class="btn btn-default bg-navy"><i class="fa fa-edit"></i> Update Account</a>
             </div>
         </div>
         <div class="card-body rounded-0">

@@ -19,7 +19,7 @@
 	}
 </style>
 <div class="col-lg-12">
-	<div class="card card-outline card-primary">
+	<div class="card card-outline card-primary" style="border-color: #800000;">
 		<div class="card-header">
 			<h5 class="card-title">System Information</h5>
 			<!-- <div class="card-tools">
@@ -48,7 +48,7 @@
 			<div class="form-group">
 				<label for="" class="control-label">System Logo</label>
 				<div class="custom-file">
-	              <input type="file" class="custom-file-input rounded-circle" id="customFile" name="img" onchange="displayImg(this,$(this))">
+	              <input type="file" class="custom-file-input rounded-circle" id="img" name="img" onchange="displayImg(this,$(this))">
 	              <label class="custom-file-label" for="customFile">Choose file</label>
 	            </div>
 			</div>
@@ -58,7 +58,7 @@
 			<div class="form-group">
 				<label for="" class="control-label">Cover</label>
 				<div class="custom-file">
-	              <input type="file" class="custom-file-input rounded-circle" id="customFile" name="cover" onchange="displayImg2(this,$(this))">
+	              <input type="file" class="custom-file-input rounded-circle" id="cover" name="cover" onchange="displayImg2(this,$(this))">
 	              <label class="custom-file-label" for="customFile">Choose file</label>
 	            </div>
 			</div>
@@ -72,7 +72,7 @@
 					<input type="email" class="form-control form-control-sm" name="email" id="email" value="<?php echo $_settings->info('email') ?>">
 				</div>
 				<div class="form-group">
-					<label for="contact" class="control-label">Contact #</label>
+					<label for="contact" class="control-label">Contact Number</label>
 					<input type="text" class="form-control form-control-sm" name="contact" id="contact" value="<?php echo $_settings->info('contact') ?>">
 				</div>
 				<div class="form-group">

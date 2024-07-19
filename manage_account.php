@@ -13,7 +13,7 @@ foreach($user->fetch_array() as $k =>$v){
 	}
 </style>
 <div class="content py-4">
-    <div class="card card-outline card-primary shadow rounded-0">
+    <div class="card card-outline card-primary shadow rounded-0" style="border-color: #800000;">
         <div class="card-header rounded-0">
             <h5 class="card-title">Update Details</h5>
         </div>
@@ -80,7 +80,7 @@ foreach($user->fetch_array() as $k =>$v){
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="img" class="control-label text-muted">Choose Image</label>
+                                <label for="img" class="control-label text-navy">Choose Image</label>
                                 <input type="file" id="img" name="img" class="form-control form-control-border" accept="image/png,image/jpeg" onchange="displayImg(this,$(this))">
                             </div>
 
@@ -101,8 +101,8 @@ foreach($user->fetch_array() as $k =>$v){
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group text-center">
-                                <button class="btn btn-default bg-navy btn-flat"> Update</button>
-                                <a href="./?page=profile" class="btn btn-light border btn-flat"> Cancel</a>
+                                <button class="btn btn-default btn-primary" style="background-color: #800000; color: white;"> Update</button>
+                                <a href="./?page=profile" class="btn btn-default btn-primary bg-navy"> Cancel</a>
                             </div>
                         </div>
                     </div>

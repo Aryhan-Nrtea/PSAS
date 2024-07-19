@@ -12,14 +12,14 @@
   }
 </style>
 <!-- Navbar -->
-      <nav class="main-header navbar navbar-expand navbar-light border  border-dark border-top-0  border-left-0 border-right-0 navbar-light text-sm shadow-sm">
+      <nav class="main-header navbar navbar-expand navbar-light border  border-dark border-top-0  border-left-0 border-right-0 navbar-light text-sm shadow-sm" style="background-color: #800000; color: white;">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
           <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+          <a class="nav-link" style=" color: white;" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li>
           <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?php echo base_url ?>" class="nav-link"><b><?php echo (!isMobileDevice()) ? $_settings->info('name'):$_settings->info('short_name'); ?></b></a>
+            <a href="<?php echo base_url ?>" class="nav-link" style="color: white;"><b><?php echo (!isMobileDevice()) ? $_settings->info('name'):$_settings->info('short_name'); ?></b></a>
           </li>
         </ul>
         <!-- Right navbar links -->

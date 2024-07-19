@@ -1,6 +1,6 @@
 <div class="content py-2">
     <div class="col-12">
-        <div class="card card-outline card-primary shadow rounded-0">
+        <div class="card card-outline card-primary shadow rounded-0" style="border-color: #800000;">
             <div class="card-body rounded-0">
                 <h2>Archive List</h2>
                 <hr class="bg-navy">

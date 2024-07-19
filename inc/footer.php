@@ -63,7 +63,7 @@
 </script>
 <footer class="main-footer text-sm">
   <div class="container">
-        <strong>Eastern Visayas State University - Carigara Campus © <?php echo date('Y') ?>. 
+        <strong>Eastern Visayas State University - Carigara Campus. 
         <!-- <a href=""></a> -->
         </strong>
         All rights reserved.

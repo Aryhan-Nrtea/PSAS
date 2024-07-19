@@ -19,7 +19,7 @@ if(isset($_GET['id'])){
 ?>
 <div class="content py-2">
     <div class="col-12">
-        <div class="card card-outline card-primary shadow rounded-0">
+        <div class="card card-outline card-primary shadow rounded-0" style="border-color: #800000;">
             <div class="card-body rounded-0">
                 <h2>Archive List of <?= isset($curriculum['name']) ? $curriculum['name'] : "" ?> </h2>
                 <p><small><?= isset($curriculum['description']) ? $curriculum['description'] : "" ?></small></p>

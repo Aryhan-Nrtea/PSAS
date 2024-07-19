@@ -7,7 +7,7 @@
         border-radius:100%;
     }
 </style>
-<div class="card card-outline card-primary">
+<div class="card card-outline card-primary" style="border-color: #800000;">
 	<div class="card-header">
 		<h3 class="card-title">List of Students</h3>
 	</div>

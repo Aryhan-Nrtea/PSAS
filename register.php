@@ -13,6 +13,11 @@
     }
     body{
       background-image: url("<?php echo validate_image($_settings->info('cover')) ?>");
+      content:"";
+      position:absolute;
+      height:calc(100%);
+      width:calc(100%);
+      background-position: center center; 
       background-size:cover;
       background-repeat:no-repeat;
     }
@@ -54,7 +59,7 @@
     <div class="col-7 h-100 d-flex align-items-center justify-content-center" style= "margin-top: -10%;">
       <div class="w-100">
         <center><img src="<?= validate_image($_settings->info('logo')) ?>" alt="" id="logo-img"></center>
-        <h1 class="text-center py-5 login-title"><?php echo $_settings->info('name') ?></h1>
+        <h1 class="w-100 text-center site-title"><?php echo $_settings->info('name') ?></h1>
       </div>
       
     </div>

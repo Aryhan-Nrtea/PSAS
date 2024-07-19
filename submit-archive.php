@@ -23,7 +23,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 	}
 </style>
 <div class="content py-4">
-    <div class="card card-outline card-primary shadow rounded-0">
+    <div class="card card-outline card-primary shadow rounded-0" style="border-color: #800000;">
         <div class="card-header rounded-0">
             <h5 class="card-title"><?= isset($id) ? "Update Archive-{$archive_code} Details" : "Submit Thesis" ?></h5>
         </div>
@@ -72,8 +72,8 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label for="img" class="control-label text-muted">Thesis Image/Banner Image</label>
-                                <input type="file" id="img" name="img" class="form-control form-control-border" accept="image/png,image/jpeg" onchange="displayImg(this,$(this))" <?= !isset($id) ? "required" : "" ?>>
+                                <label for="img" class="control-label text-navy">Thesis Image/Banner Image</label>
+                                <input type="file" id="img" name="img" class="form-control form-control-border" accept="image/png,image/jpg" onchange="displayImg(this,$(this))" <?= !isset($id) ? "required" : "" ?>>
                             </div>
 
                             <div class="form-group text-center">
@@ -84,7 +84,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label for="pdf" class="control-label text-muted">Thesis Document (PDF File Only)</label>
+                                <label for="pdf" class="control-label text-navy">Thesis Document (PDF File Only)</label>
                                 <input type="file" id="pdf" name="pdf" class="form-control form-control-border" accept="application/pdf" <?= !isset($id) ? "required" : "" ?>>
                             </div>
                         </div>
@@ -92,8 +92,8 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group text-center">
-                                <button class="btn btn-default bg-navy btn-flat"> Update</button>
-                                <a href="./?page=profile" class="btn btn-light border btn-flat"> Cancel</a>
+                                <button class="btn btn-default btn-primary" style="background-color: #800000; color: white;">Submit</button>
+                                <a href="./?page=profile" class="btn btn-default btn-primary bg-navy"> Cancel</a>
                             </div>
                         </div>
                     </div>

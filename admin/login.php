@@ -13,6 +13,11 @@
     }
     body{
       background-image: url("<?php echo validate_image($_settings->info('cover')) ?>");
+      content:"";
+      position:absolute;
+      height:calc(100%);
+      width:calc(100%);
+      background-position: center center; 
       background-size:cover;
       background-repeat:no-repeat;
       overflow: hidden;
@@ -49,7 +54,7 @@
     <div class="col-7 h-100 d-flex align-items-center justify-content-center" style="margin-top: -1%;">
       <div class="w-100">
         <center><img src="<?= validate_image($_settings->info('logo')) ?>" alt="" id="logo-img"></center>
-        <h1 class="text-center login-title">EVSU - Carigara Campus Thesis Archival System</h1>
+        <h1 class="w-100 text-center site-title"><?php echo $_settings->info('name')?></h1>
       </div>
       
     </div>
