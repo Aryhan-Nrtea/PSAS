@@ -61,18 +61,18 @@
     }
   })
 </script>
-<footer class="main-footer text-sm">
+<!-- <footer class="main-footer text-sm">
   <div class="container">
-        <strong>Eastern Visayas State University - Carigara Campus. 
+        <strong>Eastern Visayas State University - Carigara Campus.  -->
         <!-- <a href=""></a> -->
         </strong>
-        All rights reserved.
+        <!-- All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
           <b><?php echo $_settings->info('short_name') ?>
         </div>
       </div>
       </footer>
-    </div>
+    </div> -->
     <!-- ./wrapper -->
 <div id="libraries">
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

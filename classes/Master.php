@@ -1,76 +1,81 @@
 <?php
 require_once('../config.php');
-Class Master extends DBConnection {
+class Master extends DBConnection
+{
 	private $settings;
-	public function __construct(){
+	public function __construct()
+	{
 		global $_settings;
 		$this->settings = $_settings;
 		parent::__construct();
 	}
-	public function __destruct(){
+	public function __destruct()
+	{
 		parent::__destruct();
 	}
-	function capture_err(){
-		if(!$this->conn->error)
+	function capture_err()
+	{
+		if (!$this->conn->error)
 			return false;
-		else{
+		else {
 			$resp['status'] = 'failed';
 			$resp['error'] = $this->conn->error;
 			return json_encode($resp);
-			exit;
+			
 		}
 	}
-	function save_department(){
+	function save_department()
+	{
 		extract($_POST);
 		$data = "";
-		foreach($_POST as $k =>$v){
-			if(!in_array($k,array('id'))){
-				if(!is_numeric($v))
+		foreach ($_POST as $k => $v) {
+			if (!in_array($k, array('id'))) {
+				if (!is_numeric($v))
 					$v = $this->conn->real_escape_string($v);
-				if(!empty($data)) $data .=",";
+				if (!empty($data)) $data .= ",";
 				$data .= " `{$k}`='{$v}' ";
 			}
 		}
-		if(empty($id)){
-			$sql = "INSERT INTO `department_list` set {$data} ";
-		}else{
-			$sql = "UPDATE `department_list` set {$data} where id = '{$id}' ";
+		if (empty($id)) {
+			$sql = "INSERT INTO department_list set {$data} ";
+		} else {
+			$sql = "UPDATE department_list set {$data} where id = '{$id}' ";
 		}
-		$check = $this->conn->query("SELECT * FROM `department_list` where `name`='{$name}' ".($id > 0 ? " and id != '{$id}'" : ""))->num_rows;
-		if($check > 0){
+		$check = $this->conn->query("SELECT * FROM department_list where `name`='{$name}' " . ($id > 0 ? " and id != '{$id}'" : ""))->num_rows;
+		if ($check > 0) {
 			$resp['status'] = 'failed';
 			$resp['msg'] = "Department Name Already Exists.";
-		}else{
+		} else {
 			$save = $this->conn->query($sql);
-			if($save){
+			if ($save) {
 				$rid = !empty($id) ? $id : $this->conn->insert_id;
 				$resp['status'] = 'success';
-				if(empty($id))
+				if (empty($id))
 					$resp['msg'] = "Department details successfully added.";
 				else
 					$resp['msg'] = "Department details has been updated successfully.";
-			}else{
+			} else {
 				$resp['status'] = 'failed';
 				$resp['msg'] = "An error occured.";
-				$resp['err'] = $this->conn->error."[{$sql}]";
+				$resp['err'] = $this->conn->error . "[{$sql}]";
 			}
 		}
-		if($resp['status'] =='success')
-		$this->settings->set_flashdata('success',$resp['msg']);
+		if ($resp['status'] == 'success')
+			$this->settings->set_flashdata('success', $resp['msg']);
 		return json_encode($resp);
 	}
-	function delete_department(){
+	function delete_department()
+	{
 		extract($_POST);
-		$del = $this->conn->query("DELETE FROM `department_list` where id = '{$id}'");
-		if($del){
+		$del = $this->conn->query("DELETE FROM department_list where id = '{$id}'");
+		if ($del) {
 			$resp['status'] = 'success';
-			$this->settings->set_flashdata('success',"Department has been deleted successfully.");
-		}else{
+			$this->settings->set_flashdata('success', "Department has been deleted successfully.");
+		} else {
 			$resp['status'] = 'failed';
 			$resp['error'] = $this->conn->error;
 		}
 		return json_encode($resp);
-
 	}
 	function save_curriculum(){
 		extract($_POST);
@@ -91,16 +96,16 @@ Class Master extends DBConnection {
 		$check = $this->conn->query("SELECT * FROM `curriculum_list` where `name`='{$name}' and `department_id` = '{department_id}' ".($id > 0 ? " and id != '{$id}'" : ""))->num_rows;
 		if($check > 0){
 			$resp['status'] = 'failed';
-			$resp['msg'] = "Curriculum Name Already Exists.";
+			$resp['msg'] = "Course Name Already Exists.";
 		}else{
 			$save = $this->conn->query($sql);
 			if($save){
 				$rid = !empty($id) ? $id : $this->conn->insert_id;
 				$resp['status'] = 'success';
 				if(empty($id))
-					$resp['msg'] = "Curriculum details successfully added.";
+					$resp['msg'] = "Course details successfully added.";
 				else
-					$resp['msg'] = "Curriculum details has been updated successfully.";
+					$resp['msg'] = "Course details has been updated successfully.";
 			}else{
 				$resp['status'] = 'failed';
 				$resp['msg'] = "An error occured.";
@@ -111,184 +116,228 @@ Class Master extends DBConnection {
 		$this->settings->set_flashdata('success',$resp['msg']);
 		return json_encode($resp);
 	}
-	function delete_curriculum(){
+	function delete_curriculum()
+	{
 		extract($_POST);
-		$del = $this->conn->query("DELETE FROM `curriculum_list` where id = '{$id}'");
-		if($del){
+		$del = $this->conn->query("DELETE FROM curriculum_list where id = '{$id}'");
+		if ($del) {
 			$resp['status'] = 'success';
-			$this->settings->set_flashdata('success',"Curriculum has been deleted successfully.");
-		}else{
+			$this->settings->set_flashdata('success', "Course has been deleted successfully.");
+		} else {
 			$resp['status'] = 'failed';
 			$resp['error'] = $this->conn->error;
 		}
 		return json_encode($resp);
-
 	}
 	function save_archive() {
-		$resp = array();
-	
-		if(empty($_POST['id'])) {
-			// Generating archive code
+		if (empty($_POST['id'])) {
 			$pref = date("Ym");
 			$code = sprintf("%'.04d", 1);
-			
-			while(true) {
+			while (true) {
 				$check = $this->conn->query("SELECT * FROM `archive_list` WHERE archive_code = '{$pref}{$code}'")->num_rows;
-				
-				if($check > 0) {
+				if ($check > 0) {
 					$code = sprintf("%'.04d", abs($code) + 1);
 				} else {
 					break;
 				}
 			}
-			
 			$_POST['archive_code'] = $pref . $code;
 			$_POST['student_id'] = $this->settings->userdata('id');
 			$_POST['curriculum_id'] = $this->settings->userdata('curriculum_id');
 		}
-		
-		// Sanitize and process inputs
-		foreach($_POST as $k => $v) {
-			if(!in_array($k, array('id')) && !is_array($_POST[$k])) {
-				if(!is_numeric($v)) {
-					$v = $this->conn->real_escape_string($v);
-				}
-				$data[$k] = $v;
-			}
-		}
-		
-		// Handle abstract and members fields
-		if(isset($data['abstract'])) {
-			$data['abstract'] = htmlentities($data['abstract']);
-		}
-		if(isset($data['members'])) {
-			$data['members'] = htmlentities($data['members']);
-		}
-		
-		// Check and handle PDF upload
-		if(isset($_FILES['pdf']) && !empty($_FILES['pdf']['tmp_name'])) {
-			$type = mime_content_type($_FILES['pdf']['tmp_name']);
-			
-			if($type != "application/pdf") {
-				$resp['status'] = "failed";
-				$resp['msg'] = "Invalid Document File Type.";
-				return json_encode($resp);
-			} else {
-				$fname = 'uploads/pdf/archive-'.$data['id'].'.pdf';
-				$dir_path = base_app . $fname;
-				
-				if(move_uploaded_file($_FILES['pdf']['tmp_name'], $dir_path)) {
-					$data['document_path'] = $fname . '?v=' . time();
-				} else {
-					$resp['msg'] = "Failed to upload Document File.";
-				}
-			}
-		}
-		
-		// Check and handle image upload
-		if(isset($_FILES['img']) && !empty($_FILES['img']['tmp_name'])) {
-			$type = mime_content_type($_FILES['img']['tmp_name']);
-			$allowed = array('image/png', 'image/jpeg');
-			
-			if(!in_array($type, $allowed)) {
-				$resp['status'] = "failed";
-				$resp['msg'] = "Invalid Image File Type.";
-			} else {
-				$fname = 'uploads/banners/archive-'.$data['id'].'.png';
-				$dir_path = base_app . $fname;
-				
-				// Resize and save image
-				$new_width = 1280;
-				$new_height = 720;
-				
-				list($width, $height) = getimagesize($_FILES['img']['tmp_name']);
-				$t_image = imagecreatetruecolor($new_width, $new_height);
-				$gdImg = ($type == 'image/png') ? imagecreatefrompng($_FILES['img']['tmp_name']) : imagecreatefromjpeg($_FILES['img']['tmp_name']);
-				
-				if($gdImg && imagecopyresampled($t_image, $gdImg, 0, 0, 0, 0, $new_width, $new_height, $width, $height)) {
-					if(is_file($dir_path)) {
-						unlink($dir_path);
-					}
-					$uploaded_img = imagepng($t_image, $dir_path);
-					imagedestroy($gdImg);
-					imagedestroy($t_image);
-					
-					if($uploaded_img) {
-						$data['banner_path'] = $fname . '?v=' . time();
-					} else {
-						$resp['msg'] = "Failed to upload Image File.";
-					}
-				} else {
-					$resp['msg'] = "Failed to process Image File.";
-				}
-			}
-		}
-		
-		// Prepare SQL query
-		if(empty($_POST['id'])) {
-			$sql = "INSERT INTO `archive_list` SET ";
-		} else {
-			$sql = "UPDATE `archive_list` SET ";
-		}
-		
-		$sql .= implode(', ', array_map(function($k, $v) {
-			return "`{$k}` = '{$v}'";
-		}, array_keys($data), $data));
-		
-		if(!empty($_POST['id'])) {
-			$sql .= " WHERE id = '{$_POST['id']}'";
-		}
-		
-		// Execute query
+	
+		if (isset($_POST['abstract']))
+			$_POST['abstract'] = htmlentities($_POST['abstract']);
+		if (isset($_POST['members']))
+			$_POST['members'] = htmlentities($_POST['members']);
+	
+		extract($_POST);
+		$data = "";
+	// Handle disclaimer checkbox
+$disclaimer = isset($_POST['disclaimer']) ? 1 : 0;
+
+// Validate the file if it exists
+if (isset($_FILES['pdf']) && !empty($_FILES['pdf']['tmp_name'])) {
+    $type = mime_content_type($_FILES['pdf']['tmp_name']);
+    if ($type != "application/pdf") {
+        $resp['status'] = "failed";
+        $resp['msg'] = "Invalid Document File Type.";
+        return json_encode($resp);
+    }
+}
+
+// Initialize data array to build query
+$data = array();
+
+// Process POST data
+foreach ($_POST as $k => $v) {
+    if (!in_array($k, array('id')) && !is_array($v)) {
+        if (!is_numeric($v)) {
+            $v = $this->conn->real_escape_string($v);
+        }
+        // Exclude disclaimer from the loop if you are handling it separately
+        if ($k !== 'disclaimer') {
+            $data[] = "`{$k}`='{$v}'";
+        }
+    }
+}
+
+// Add disclaimer to the data array
+$data[] = "`disclaimer`='{$disclaimer}'";
+
+// Build the SQL query
+$data_string = implode(", ", $data);
+if (empty($id)) {
+    $sql = "INSERT INTO `archive_list` SET {$data_string}";
+} else {
+    $sql = "UPDATE `archive_list` SET {$data_string} WHERE id = '{$id}'";
+}
+
+	
 		$save = $this->conn->query($sql);
-		
-		if($save) {
-			$aid = !empty($_POST['id']) ? $_POST['id'] : $this->conn->insert_id;
+	
+		if ($save) {
+			$aid = !empty($id) ? $id : $this->conn->insert_id;
 			$resp['status'] = 'success';
 			$resp['id'] = $aid;
-			
-			if(empty($_POST['id'])) {
-				$resp['msg'] = "Archive was successfully submitted.";
-			} else {
-				$resp['msg'] = "Archive details were updated successfully.";
+			$resp['msg'] = empty($id) ? "Archive was successfully submitted" : "Archive details were updated successfully.";
+	
+			// Handle image upload
+			if (isset($_FILES['img']) && $_FILES['img']['tmp_name'] != '') {
+				$fname = 'uploads/banners/archive-' . $aid . '.png';
+				$dir_path = base_app . $fname;
+				$upload = $_FILES['img']['tmp_name'];
+				$type = mime_content_type($upload);
+				$allowed = array('image/png', 'image/jpeg', 'image/jpg');
+				if (!in_array($type, $allowed)) {
+					$resp['msg'] .= " But Image failed to upload due to invalid file type.";
+				} else {
+					$new_height = 720;
+					$new_width = 800;
+	
+					list($width, $height) = getimagesize($upload);
+					$t_image = imagecreatetruecolor($new_width, $new_height);
+					imagealphablending($t_image, false);
+					imagesavealpha($t_image, true);
+					$gdImg = ($type == 'image/png') ? imagecreatefrompng($upload) : imagecreatefromjpeg($upload);
+					imagecopyresampled($t_image, $gdImg, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+					if ($gdImg) {
+						if (is_file($dir_path))
+							unlink($dir_path);
+						$uploaded_img = imagepng($t_image, $dir_path);
+						imagedestroy($gdImg);
+						imagedestroy($t_image);
+					} else {
+						$resp['msg'] .= " But Image failed to upload due to unknown reason.";
+					}
+				}
+				if (isset($uploaded_img)) {
+					$this->conn->query("UPDATE archive_list SET `banner_path` = CONCAT('{$fname}', '?v=', unix_timestamp(CURRENT_TIMESTAMP)) WHERE id = '{$aid}'");
+				}
 			}
-			
-			// Update paths in database
-			if(isset($data['document_path'])) {
-				$this->conn->query("UPDATE `archive_list` SET `document_path` = '{$data['document_path']}' WHERE id = '{$aid}'");
+	
+			// Handle sheet upload
+			if (isset($_FILES['sheet']) && $_FILES['sheet']['tmp_name'] != '') {
+				$fname = 'uploads/sheet/archive-' . $aid . '.png';
+				$dir_path = base_app . $fname;
+				$upload = $_FILES['sheet']['tmp_name'];
+				$type = mime_content_type($upload);
+				$allowed = array('image/png', 'image/jpeg', 'image/jpg');
+				if (!in_array($type, $allowed)) {
+					$resp['msg'] .= " But Image failed to upload due to invalid file type.";
+				} else {
+					$new_height = 720;
+					$new_width = 800;
+	
+					list($width, $height) = getimagesize($upload);
+					$t_image = imagecreatetruecolor($new_width, $new_height);
+					imagealphablending($t_image, false);
+					imagesavealpha($t_image, true);
+					$gdImg = ($type == 'image/png') ? imagecreatefrompng($upload) : imagecreatefromjpeg($upload);
+					imagecopyresampled($t_image, $gdImg, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+					if ($gdImg) {
+						if (is_file($dir_path))
+							unlink($dir_path);
+						$uploaded_img = imagepng($t_image, $dir_path);
+						imagedestroy($gdImg);
+						imagedestroy($t_image);
+					} else {
+						$resp['msg'] .= " But Image failed to upload due to unknown reason.";
+					}
+				}
+				if (isset($uploaded_img)) {
+					$this->conn->query("UPDATE archive_list SET `sheet_path` = CONCAT('{$fname}', '?v=', unix_timestamp(CURRENT_TIMESTAMP)) WHERE id = '{$aid}'");
+				}
 			}
-			if(isset($data['banner_path'])) {
-				$this->conn->query("UPDATE `archive_list` SET `banner_path` = '{$data['banner_path']}' WHERE id = '{$aid}'");
+	
+			// Handle PDF upload
+			if (isset($_FILES['pdf']) && $_FILES['pdf']['tmp_name'] != '') {
+				$fname = 'uploads/pdf/archive-' . $aid . '.pdf';
+				$dir_path = base_app . $fname;
+				$upload = $_FILES['pdf']['tmp_name'];
+				$type = mime_content_type($upload);
+				$allowed = array('application/pdf');
+	
+				if (!in_array($type, $allowed)) {
+					$resp['msg'] .= " But Document File has failed to upload due to invalid file type.";
+				} else {
+					$uploaded = move_uploaded_file($_FILES['pdf']['tmp_name'], $dir_path);
+	
+					if ($uploaded) {
+						// Update the document path to include ?v=timestamp#toolbar=0
+						$document_path = $fname . '?v=' . time() . '#toolbar=0';
+	
+						// Prepare and execute the database update query
+						$stmt = $this->conn->prepare("UPDATE archive_list SET document_path = ? WHERE id = ?");
+						$stmt->bind_param('si', $document_path, $aid);
+						$stmt->execute();
+					}
+				}
 			}
-			
 		} else {
 			$resp['status'] = 'failed';
 			$resp['msg'] = "An error occurred.";
-			$resp['err'] = $this->conn->error . " [{$sql}]";
+			$resp['err'] = $this->conn->error . "[{$sql}]";
 		}
-		
-		if($resp['status'] == 'success') {
+	
+		if ($resp['status'] == 'success')
 			$this->settings->set_flashdata('success', $resp['msg']);
-		}
-		
 		return json_encode($resp);
 	}
 	
-	function update_status(){
+	function update_status()
+	{
 		extract($_POST);
-		$update = $this->conn->query("UPDATE `archive_list` set status  = '{$status}' where id = '{$id}'");
-		if($update){
+		$update = $this->conn->query("UPDATE archive_list set status  = '{$status}' where id = '{$id}'");
+		if ($update) {
 			$resp['status'] = 'success';
 			$resp['msg'] = "Archive status has successfully updated.";
-		}else{
+		} else {
 			$resp['status'] = 'failed';
-			$resp['msg'] = "An error occurred. Error: " .$this->conn->error;
+			$resp['msg'] = "An error occurred. Error: " . $this->conn->error;
 		}
-		if($resp['status'] =='success')
-		$this->settings->set_flashdata('success',$resp['msg']);
+		if ($resp['status'] == 'success')
+			$this->settings->set_flashdata('success', $resp['msg']);
+		return json_encode($resp);
+	}
+
+	function delete_archive()
+	{
+		extract($_POST);
+		$del = $this->conn->query("DELETE FROM archive_list where id = '{$id}'");
+		if ($del) {
+			$resp['status'] = 'success';
+			$this->settings->set_flashdata('success', "Archive has been deleted successfully.");
+		} else {
+			$resp['status'] = 'failed';
+			$resp['error'] = $this->conn->error;
+		}
 		return json_encode($resp);
 	}
 }
+
+
+	
 
 $Master = new Master();
 $action = !isset($_GET['f']) ? 'none' : strtolower($_GET['f']);
@@ -296,32 +345,33 @@ $sysset = new SystemSettings();
 switch ($action) {
 	case 'save_department':
 		echo $Master->save_department();
-	break;
+		break;
 	case 'delete_department':
 		echo $Master->delete_department();
-	break;
+		break;
 	case 'save_curriculum':
 		echo $Master->save_curriculum();
-	break;
+		break;
 	case 'delete_curriculum':
 		echo $Master->delete_curriculum();
-	break;
+		break;
 	case 'save_archive':
 		echo $Master->save_archive();
-	break;
+		break;
 	case 'delete_archive':
 		echo $Master->delete_archive();
-	break;
+	 	break;
 	case 'update_status':
 		echo $Master->update_status();
-	break;
-	// case 'save_payment':
-	// 	echo $Master->save_payment();
-	// break;
-	// case 'delete_payment':
-	// 	echo $Master->delete_payment();
-	// break;
+		break;
+	
+		// case 'save_payment':
+		// 	echo $Master->save_payment();
+		// break;
+		// case 'delete_payment':
+		// 	echo $Master->delete_payment();
+		// break;
 	default:
-		// echo $sysset->index();
+		//  echo $sysset->index();
 		break;
 }

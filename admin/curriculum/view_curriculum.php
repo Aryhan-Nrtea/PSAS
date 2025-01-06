@@ -43,6 +43,6 @@ if(isset($_GET['id'])){
         </dd>
     </dl>
     <div class="col-12 text-right">
-        <button class="btn btn-flat btn-sm btn-dark" type="button" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+        <button class="btn btn-default bg-dark" type="button" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
     </div>
 </div>

@@ -85,7 +85,7 @@ foreach($user->fetch_array() as $k =>$v){
                             </div>
 
                             <div class="form-group text-center">
-                                <img src="<?= validate_image(isset($avatar) ? $avatar : "") ?>" alt="My Avatar" id="cimg" class="img-fluid student-img bg-gradient-dark border">
+                                <img src="<?= validate_image(isset($avatar) ? $avatar : "") ?>" alt="My Avatar" id="cimg" class="img-fluid student-img ">
                             </div>
                         </div>
                     </div>
@@ -101,7 +101,7 @@ foreach($user->fetch_array() as $k =>$v){
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group text-center">
-                                <button class="btn btn-default btn-primary" style="background-color: #800000; color: white;"> Update</button>
+                                <button class="btn btn-default btn-primary" style="background-color: #d30707; color: white;"> Update</button>
                                 <a href="./?page=profile" class="btn btn-default btn-primary bg-navy"> Cancel</a>
                             </div>
                         </div>

@@ -85,7 +85,7 @@
 		<div class="card-footer">
 			<div class="col-md-12">
 				<div class="row">
-					<button class="btn btn-sm btn-primary" form="system-frm">Update</button>
+					<button class="btn btn-default btn-primary" style="background-color: #d30707; color: white;" form="system-frm">Update</button>
 				</div>
 			</div>
 		</div>

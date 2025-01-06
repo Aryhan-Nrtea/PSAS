@@ -12,14 +12,14 @@
   }
 </style>
 <!-- Navbar -->
-      <nav class="main-header navbar navbar-expand navbar-light border  border-dark border-top-0  border-left-0 border-right-0 navbar-light text-sm shadow-sm" style="background-color: #800000; color: white;">
+      <nav class="main-header navbar navbar-expand navbar-light border  border-light border-top-0  border-left-0 border-right-0 navbar-light text-sm shadow-sm" style="background-color: #d30707; color: white">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
           <li class="nav-item">
-          <a class="nav-link" style=" color: white;" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+          <a class="nav-link" style="color: white" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li>
           <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?php echo base_url ?>" class="nav-link" style="color: white;"><b><?php echo (!isMobileDevice()) ? $_settings->info('name'):$_settings->info('short_name'); ?></b></a>
+            <a class="nav-link" style="color: white"><b><?php echo (!isMobileDevice()) ? $_settings->info('name'):$_settings->info('short_name'); ?></b></a>
           </li>
         </ul>
         <!-- Right navbar links -->
@@ -50,7 +50,7 @@
             <div class="btn-group nav-link">
                   <button type="button" class="btn btn-rounded badge badge-light dropdown-toggle dropdown-icon" data-toggle="dropdown">
                     <span><img src="<?php echo validate_image($_settings->userdata('avatar')) ?>" class="img-circle elevation-2 user-img" alt="User Image"></span>
-                    <span class="ml-3"><?php echo ucwords($_settings->userdata('firstname').' '.$_settings->userdata('lastname')) ?></span>
+                    <span class="ml-3"><?php echo ucwords($_settings->userdata('username'))?></span>
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <div class="dropdown-menu" role="menu">

@@ -55,22 +55,22 @@
     }
   })
 </script>
-<footer class="main-footer text-sm" style="background-color: #800000; color: white;">
-        <strong>Eastern Visayas State University - Carigara Campus. 
+<!-- <footer class="main-footer text-sm">
+        <strong>Eastern Visayas State University - Carigara Campus.  -->
         <!-- <a href=""></a> -->
-        </strong>
+        <!-- </strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
           <b><?php echo $_settings->info('short_name') ?>
         </div>
       </footer>
-    </div>
+    </div> -->
     <!-- ./wrapper -->
-<div id="libraries">
+<!-- <div id="libraries"> -->
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
+    <!-- <script>
       $.widget.bridge('uibutton', $.ui.button)
-    </script>
+    </script> -->
     <!-- Bootstrap 4 -->
     <script src="<?php echo base_url ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- ChartJS -->

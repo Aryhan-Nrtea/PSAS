@@ -1,173 +1,152 @@
 <?php require_once('./config.php') ?>
 <!DOCTYPE html>
-<html lang="en" class="" style="height: auto;">
- <?php require_once('inc/header.php') ?>
-<body class="hold-transition ">
-  <script>
-    start_loader()
-  </script>
-  <style>
-    html, body{
-      height:calc(100%) !important;
-      width:calc(100%) !important;
+<html lang="en" style="height: auto;">
+<?php require_once('inc/header.php') ?>
+<body class="hold-transition">
+
+<script>
+    start_loader();
+</script>
+<style>
+    html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        font-family: Arial, sans-serif;
     }
-    body{
-      content:"";
-      position:absolute;
-      height:calc(100%);
-      width:calc(100%);
-      background-position: center center; 
-      background-image: url("<?php echo validate_image($_settings->info('cover')) ?>");
-      background-size:cover;
-      background-repeat:no-repeat;
+    body {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?= validate_image($_settings->info("cover")) ?>);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
     }
-    .login-title{
-      text-shadow: 2px 2px black
+    #login {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
     }
-    /* #login{
-      flex-direction:column !important
-    } */
-    #login{
-        direction:rtl
+    .custom-card {
+        max-width: 500px; /* Adjust as needed */
+        width: 100%;
+        margin: 20px;
+        background-color: rgba(255, 255, 255, 0.9); /* Light background for contrast */
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        margin-top: 7%;
+        text-align: center;
     }
-    #login > *{
-        direction:ltr
+    #logo-img {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        display: block;
+        margin: 20px auto;
     }
-    #logo-img{
-        height:150px;
-        width:150px;
-        object-fit:scale-down;
-        object-position:center center;
-        border-radius:100%;
-    }
-    .btn-block {
-    width: 100%; 
-   }
-   .btn-long {
-    width: 100%; 
-   }
-   .btn-maroon {
+    .btn-maroon {
         background-color: #800000;
-        color: white; 
+        color: white;
+        width: 100%;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
     }
-   
+    .btn-maroon:hover {
+        background-color: #a00000; /* Lighter shade on hover */
+    }
+    .input-group-text {
+        background-color: #f8f9fa;
+    }
+</style>
 
+<?php if($_settings->chk_flashdata('success')): ?>
+    <script>
+        alert_toast("<?php echo $_settings->flashdata('success') ?>",'success');
+    </script>
+<?php endif; ?> 
 
-    /* #login .col-7,#login .col-5{
-      width: 100% !important;
-      max-width:unset !important
-    } */
-  </style>
-  <?php if($_settings->chk_flashdata('success')): ?>
-      <script>
-        alert_toast("<?php echo $_settings->flashdata('success') ?>",'success')
-      </script>
-      <?php endif;?> 
-<div class="h-100 d-flex  align-items-center w-100" id="login">
-    <div class="col-7 h-100 d-flex align-items-center justify-content-center" style="margin-top: -10%;">
-      <div class="w-100">
-        <center><img src="<?= validate_image($_settings->info('logo')) ?>" alt="" id="logo-img"></center>
-        <h1 class="w-100 text-center site-title"><?php echo $_settings->info('name') ?></h1>
-      </div>
-      
-    </div>
-    <div class="col-5 h-100">
-        <div class="w-100 d-flex justify-content-center align-items-center h-100 text-navy">
-            <div class="card card-outline card-primary rounded-0 shadow col-lg-10 col-md-10 col-sm-5" style="border-color: #800000;">
-                <div class="card-header">
-                    <h5 class="card-title text-center text-dark"><b>Login</b></h5>
+<div id="login">
+    <div class="custom-card">
+        <center>
+            <img src="<?= validate_image($_settings->info('logo')) ?>" alt="Logo" id="logo-img">
+            <h4 class="text-center"><?= $_settings->info('name') ?></h4>
+        </center>
+        <hr>
+        <h4><center><b>Student Portal</b></center></h4>
+        <div class="card-body">
+            <form id="slogin-form" action="" method="post">
+                <div class="input-group mb-3">
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <form action="" id="slogin-form">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <input type="email" name="email" id="email" placeholder="Email" class="form-control form-control-border" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <input type="password" name="password" id="password" placeholder="Password" class="form-control form-control-border" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center">
-                            <div class="col-lg-12">
-                                <div class="form-group text-center">
-                                    <button class="btn btn-default btn-long" style="background-color: #800000; color: white;">Login</button>
-                                </div>
-
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-12">
-                                        <div class="form-group text-center">
-                                            <a href="<?php echo base_url ?>">Back to Website</a>
-                                        </div>
-                            </div>
-                        </div>
-                    </form>
+                <div class="input-group mb-3">
+                    <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
+                    <div class="input-group-append">
+                        <span class="input-group-text toggle-password" id="toggle-password"><i class="fa fa-eye"></i></span>
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    </div>
                 </div>
-            </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn-maroon">Login</button>
+                </div>
+                <div class="form-group text-center">
+                    <a href="<?php echo base_url ?>" style="color: black;">Back to Homepage</a>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
-<!-- jQuery -->
+<!-- Scripts -->
 <script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-<!-- Select2 -->
-<script src="<?php echo base_url ?>plugins/select2/js/select2.full.min.js"></script>
 
 <script>
-  $(document).ready(function(){
-    end_loader();
-    // Registration Form Submit
-    $('#slogin-form').submit(function(e){
-        e.preventDefault()
-        var _this = $(this)
-            $(".pop-msg").remove()
-            $('#password, #cpassword').removeClass("is-invalid")
-        var el = $("<div>")
-            el.addClass("alert pop-msg my-2")
-            el.hide()
-        start_loader();
-        $.ajax({
-            url:_base_url_+"classes/Login.php?f=student_login",
-            method:'POST',
-            data:_this.serialize(),
-            dataType:'json',
-            error:err=>{
-                console.log(err)
-                el.text("An error occured while saving the data")
-                el.addClass("alert-danger")
-                _this.prepend(el)
-                el.show('slow')
-                end_loader();
-            },
-            success:function(resp){
-                if(resp.status == 'success'){
-                    location.href= "./"
-                }else if(!!resp.msg){
-                    el.text(resp.msg)
-                    el.addClass("alert-danger")
-                    _this.prepend(el)
-                    el.show('show')
-                }else{
-                    el.text("An error occured while saving the data")
-                    el.addClass("alert-danger")
-                    _this.prepend(el)
-                    el.show('show')
+    document.addEventListener('DOMContentLoaded', function() {
+        const togglePassword = document.getElementById('toggle-password');
+        const passwordField = document.getElementById('password');
+        
+        togglePassword.addEventListener('click', function() {
+            const type = passwordField.type === 'password' ? 'text' : 'password';
+            passwordField.type = type;
+            togglePassword.querySelector('i').classList.toggle('fa-eye', type === 'password');
+            togglePassword.querySelector('i').classList.toggle('fa-eye-slash', type === 'text');
+        });
+    });
+
+    $(document).ready(function(){
+        end_loader();
+        $('#slogin-form').submit(function(e){
+            e.preventDefault();
+            var _this = $(this);
+            $(".pop-msg").remove();
+            var el = $("<div>").addClass("alert pop-msg my-2").hide();
+            start_loader();
+            $.ajax({
+                url:_base_url_+"classes/Login.php?f=student_login",
+                method:'POST',
+                data:_this.serialize(),
+                dataType:'json',
+                error: err => {
+                    console.log(err);
+                    el.text("An error occurred").addClass("alert-danger").prependTo(_this).show('slow');
+                    end_loader();
+                },
+                success: resp => {
+                    if(resp.status === 'success'){
+                        location.href = "./";
+                    } else {
+                        el.text(resp.msg || "An error occurred").addClass("alert-danger").prependTo(_this).show('slow');
+                    }
+                    end_loader();
+                    $('html, body').animate({scrollTop: 0}, 'fast');
                 }
-                end_loader();
-                $('html, body').animate({scrollTop: 0},'fast')
-            }
-        })
-    })
-  })
+            });
+        });
+    });
 </script>
 </body>
 </html>

@@ -4,8 +4,8 @@
         <div class="form-group">
             <label for="status" class="control-label text-navy">Status</label>
             <select name="status" id="status" class="form-control form-control-border" required>
-                <option value="0" <?= isset($_GET['status']) && $_GET['status'] == 0 ? "selected" : "" ?>>UnPublish</option>
-                <option value="1" <?= isset($_GET['status']) && $_GET['status'] == 1 ? "selected" : "" ?>>Publish</option>
+                <option value="0" <?= isset($_GET['status']) && $_GET['status'] == 0 ? "selected" : "" ?>>Disapproved</option>
+                <option value="1" <?= isset($_GET['status']) && $_GET['status'] == 1 ? "selected" : "" ?>>Approved</option>
             </select>
         </div>
     </form>

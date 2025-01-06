@@ -22,7 +22,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 		<div class="row">
 			<div class="col-6">
 				<center>
-					<img src="<?= validate_image($avatar) ?>" alt="Student Image" class="img-fluid student-img bg-gradient-dark border">
+					<img src="<?= validate_image($avatar) ?>" alt="Student Image" class="img-fluid student-img">
 				</center>
 			</div>
 			<div class="col-6">
@@ -35,7 +35,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 					<dd class="pl-4"><?= $email ?></dd>
 					<dt class="text-navy">Department:</dt>
 					<dd class="pl-4"><?= ucwords($department) ?></dd>
-					<dt class="text-navy">Curriculum:</dt>
+					<dt class="text-navy">Course:</dt>
 					<dd class="pl-4"><?= ucwords($curriculum) ?></dd>
 					<dt class="text-navy">System Account Status:</dt>
 					<dd class="pl-4">
@@ -50,7 +50,7 @@ if(isset($_GET['id']) && $_GET['id'] > 0){
 		</div>
 		<div class="row">
 			<div class="col-12 text-right">
-				<button class="btn btn-dark btn-flat btn-sm" data-dismiss="modal" type="button"><i class="fa fa-times"></i> Close</button>
+				<button class="btn btn-default bg-dark" data-dismiss="modal" type="button"><i class="fa fa-times"></i> Close</button>
 			</div>
 		</div>
 	</div>

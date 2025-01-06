@@ -9,7 +9,7 @@ foreach($user->fetch_array() as $k =>$v){
 	alert_toast("<?php echo $_settings->flashdata('success') ?>",'success')
 </script>
 <?php endif;?>
-<div class="card card-outline card-primary">
+<div class="card card-outline card-primary" style="border-color: #800000;">
 	<div class="card-body">
 		<div class="container-fluid">
 			<div id="msg"></div>
@@ -48,7 +48,7 @@ foreach($user->fetch_array() as $k =>$v){
 	<div class="card-footer">
 			<div class="col-md-12">
 				<div class="row">
-					<button class="btn btn-sm btn-primary" form="manage-user">Update</button>
+					<button class="btn btn-default btn-primary" style="background-color: #d30707; color: white;" form="manage-user">Update</button>
 				</div>
 			</div>
 		</div>

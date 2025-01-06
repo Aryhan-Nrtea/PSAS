@@ -17,7 +17,7 @@ foreach($user->fetch_array() as $k =>$v){
         <div class="card-header rounded-0">
             <h5 class="card-title">Your Information:</h5>
             <div class="card-tools">
-                <a href="./?page=my_archives" class="btn btn-default btn-primary" style="background-color: #800000; color: white;"><i class="fa fa-archive"></i> My Archives</a>
+                <a href="./?page=my_archives" class="btn btn-default btn-primary" style="background-color: #d30707; color: white;"><i class="fa fa-archive"></i> My Archives</a>
                 <a href="./?page=manage_account" class="btn btn-default bg-navy"><i class="fa fa-edit"></i> Update Account</a>
             </div>
         </div>
@@ -27,7 +27,7 @@ foreach($user->fetch_array() as $k =>$v){
                     <div class="row">
                         <div class="col-lg-4 col-sm-12">
                             <center>
-                                <img src="<?= validate_image($avatar) ?>" alt="Student Image" class="img-fluid student-img bg-gradient-dark border">
+                                <img src="<?= validate_image($avatar) ?>" alt="Student Image" class="img-fluid student-img">
                             </center>
                         </div>
                         <div class="col-lg-8 col-sm-12">
@@ -40,7 +40,7 @@ foreach($user->fetch_array() as $k =>$v){
                                 <dd class="pl-4"><?= $email ?></dd>
                                 <dt class="text-navy">Department:</dt>
                                 <dd class="pl-4"><?= ucwords($department) ?></dd>
-                                <dt class="text-navy">Curriculum:</dt>
+                                <dt class="text-navy">Program:</dt>
                                 <dd class="pl-4"><?= ucwords($curriculum) ?></dd>
                             </dl>
                         </div>

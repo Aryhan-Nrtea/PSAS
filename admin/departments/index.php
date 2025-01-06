@@ -6,31 +6,46 @@
         object-position:center center;
         border-radius:100%;
     }
+	#uni_modal .modal-footer {
+    
+  }
+  th {
+    text-align: center;
+	padding: 10px;
+	background-color: #f2f2f2; /* Optional: add background color for headers */
+    
+}
+tbody td {
+    text-align: center;
+	
+}
+
+
 </style>
-<div class="card card-outline card-primary" style="border-color: #800000;">
+<div class="card card-outline card-primary" style="border-color: #800000; margin-top: 1%;">
 	<div class="card-header">
 		<h3 class="card-title">List of Departments</h3>
 		<div class="card-tools">
-			<a href="javascript:void(0)" id="create_new" class="btn btn-default btn-primary" style="background-color: #800000; color: white"><span class="fas fa-plus"></span>  Add New Department</a>
+			<a href="javascript:void(0)" id="create_new" class="btn btn-default btn-primary" style="background-color: #d30707; color: white"><span class="fas fa-plus"></span>  Add New Department</a>
 		</div>
 	</div>
 	<div class="card-body">
 		<div class="container-fluid">
         <div class="container-fluid">
-			<table class="table table-hover table-striped">
+			<table class="table table-hover">
 				<colgroup>
+					<col width="1%">
+					<!-- <col width="20%"> -->
 					<col width="5%">
-					<col width="20%">
-					<col width="20%">
-					<col width="30%">
-					<col width="15%">
-					<col width="10%">
+					<col width="5%">
+					<col width="5%">
+					<col width="1%">
 				</colgroup>
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Date Created</th>
-						<th>Name</th>
+						<!-- <th>Date Created</th> -->
+						<th>Department</th>
 						<th>Description</th>
 						<th>Status</th>
 						<th>Action</th>
@@ -39,13 +54,13 @@
 				<tbody>
 					<?php 
 						$i = 1;
-						$qry = $conn->query("SELECT * from `department_list`order by `name` asc ");
+						$qry = $conn->query("SELECT * from department_list order by name asc ");
 						while($row = $qry->fetch_assoc()):
 						
 					?>
 						<tr>
 							<td class="text-center"><?php echo $i++; ?></td>
-							<td class=""><?php echo date("Y-m-d H:i",strtotime($row['date_created'])) ?></td>
+							<!-- <td class=""><?php echo date("Y-m-d H:i",strtotime($row['date_created'])) ?></td> -->
 							<td><?php echo ucwords($row['name']) ?></td>
 							<td class="truncate-1"><?php echo $row['description'] ?></td>
 							<td class="text-center">
@@ -61,7 +76,7 @@
                                 ?>
                             </td>
 							<td align="center">
-								 <button type="button" class="btn btn-flat btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+								 <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
 				                  		Action
 				                    <span class="sr-only">Toggle Dropdown</span>
 				                  </button>

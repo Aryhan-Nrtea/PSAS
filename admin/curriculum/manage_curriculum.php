@@ -28,12 +28,12 @@ if(isset($_GET['id'])){
             </select>
         </div>
         <div class="form-group">
-            <label for="name" class="control-label">Name</label>
-            <input type="text" name="name" id="name" class="form-control form-control-border" placeholder="Curriculum Name" value ="<?php echo isset($name) ? $name : '' ?>" required>
+            <label for="name" class="control-label">Program</label>
+            <input type="text" name="name" id="name" class="form-control form-control-border" placeholder="Program Name" value ="<?php echo isset($name) ? $name : '' ?>" required>
         </div>
         <div class="form-group">
             <label for="description" class="control-label">Description</label>
-            <textarea rows="3" name="description" id="description" class="form-control form-control-border" placeholder="Write the Curriculum description here." required><?php echo isset($description) ? $description : '' ?></textarea>
+            <textarea rows="3" name="description" id="description" class="form-control form-control-border" placeholder="Write the Program description here." required><?php echo isset($description) ? $description : '' ?></textarea>
         </div>
         <div class="form-group">
             <label for="" class="control-label">Status</label>

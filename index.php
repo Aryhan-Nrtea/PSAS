@@ -2,29 +2,52 @@
  <!DOCTYPE html>
 <html lang="en" class="" style="height: auto;">
 <style>
-  #header{
-    height:70vh;
-    width:calc(100%);
-    position:relative;
-    top:-1em;
-  }
-  #header:before{
-    content:"";
-    position:absolute;
-    height:calc(100%);
-    width:calc(100%);
-    background-image:url(<?= validate_image($_settings->info("cover")) ?>);
-    opacity: 50px;
-    background-size:cover;
-    background-repeat:no-repeat;
-    background-position: center center;
-  }
-  #header>div{
-    position:absolute;
-    height:calc(100%);
-    width:calc(100%);
-    z-index:2;
-  }
+  
+ #header {
+    height: 60vh; /* Full viewport height */
+    width: 100%; /* Full width */
+    position: relative; /* Relative positioning */
+    margin: 0 auto; /* Center the header */
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+    padding-top: 10rem; /* Maintain the padding you have */
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white for contrast */
+    background-image: 
+            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), /* Overlay color */
+            url(<?= validate_image($_settings->info("cover")) ?>); /* Background image */
+    background-size: cover; /* Cover the entire area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+       
+}
+    h1 {
+        color: white;
+        font-size: 3rem;
+        margin-top: -3%;
+        text-align: center;
+    }
+    .btn {
+        background-color: #d30707;
+        color: white;
+        margin-top: 6%;
+        border-radius: 50px; /* Rounded pill style */
+    }
+    .image-container {
+    width: 90%; /* Set a fixed width */
+    margin: 0 auto; /* Center the container */
+    margin-top: -3%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center; /* Center the image */
+    margin-bottom: 3%;
+    
+}
+    
+
 
   #top-Nav a.nav-link.active {
       color: #001f3f;
@@ -51,17 +74,21 @@
       </script>
       <?php endif;?>    
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper pt-5" style="">
+      <div class="content-wrapper pt-5 bg-white">
         <?php if($page == "home" || $page == "about_us"): ?>
+          <div class="image-container">
           <div id="header" class="shadow mb-4">
               <div class="d-flex justify-content-center h-100 w-100 align-items-center flex-column px-3" >
-                  <h1 class="w-100 text-center site-title" ><?php echo $_settings->info('name') ?></h1>
-                  <a href="./?page=projects" class="btn btn-lg btn-light rounded-pill w-25" style="background-color: #800000; color: white; margin-top: 3%;" id="enrollment"><b>Explore Projects</b></a>
+                  <h1 class="w-100 text-center" style="color:white; font-size: 3rem; margin-top: -10%;" ><?php echo $_settings->info('name') ?></h1>
+                  <a href="./?page=projects" class="btn btn-lg btn-light rounded-pill w-25" style="background-color: #d30707; color: white; margin-top: 5%;" id="enrollment"><b>Explore Program Studies</b></a>
               </div>
           </div>
+        </div>
         <?php endif; ?>
+          
+                  
         <!-- Main content -->
-        <section class="content ">
+        <section class="content">
           <div class="container">
             <?php 
               if(!file_exists($page.".php") && !is_dir($page)){

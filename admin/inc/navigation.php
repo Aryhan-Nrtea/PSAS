@@ -1,13 +1,13 @@
 </style>
 <!-- Main Sidebar Container -->
-      <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand" style="background-color: #800000; color: white;"> 
+      <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand" style="color: white; background-color: #d30707;"> 
         <!-- Brand Logo -->
-        <a href="<?php echo base_url ?>admin" class="brand-link bg-transparent text-sm shadow-sm">
-        <img src="<?php echo validate_image($_settings->info('logo'))?>" alt="Store Logo" class="brand-image img-circle elevation-3 bg-white" style="width: 1.8rem;height: 1.8rem;max-height: unset;object-fit:scale-down;object-position:center center">
-        <span class="brand-text font-weight-light" style="color: white;"><?php echo $_settings->info('short_name') ?></span>
+        <a class="brand-link bg-transparent text-sm shadow-sm" style="color: white; background-color: #800000;">
+        <img src="<?php echo validate_image($_settings->info('logo'))?>" alt="Store Logo" class="brand-image img-circle elevation-3" style="width: 1.8rem;height: 1.8rem; max-height: unset; object-fit:scale-down; object-position:center center; background-color:#800000;">
+        <span class="brand-text font-weight-bold"><?php echo $_settings->info('short_name') ?></span>
         </a>
         <!-- Sidebar -->
-        <div class="sidebar os-host os-theme-light os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-transition os-host-scrollbar-horizontal-hidden">
+        <div class="sidebar os-host os-theme-light os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-transition os-host-scrollbar-horizontal-hidden bg-dark">
           <div class="os-resize-observer-host observed">
             <div class="os-resize-observer" style="left: 0px; right: auto;"></div>
           </div>
@@ -30,6 +30,7 @@
                           Dashboard
                         </p>
                       </a>
+                      <hr>
                     </li>
                     <li class="nav-item">
                       <a href="<?php echo base_url ?>admin/?page=archives" class="nav-link nav-archives">
@@ -38,6 +39,7 @@
                           Archives List
                         </p>
                       </a>
+                      <hr>
                     </li>
                     <li class="nav-item">
                       <a href="<?php echo base_url ?>admin/?page=students" class="nav-link nav-students">
@@ -46,24 +48,27 @@
                           Student List
                         </p>
                       </a>
+                      <hr>
                     </li>
                     <?php if($_settings->userdata('type') == 1): ?>
-                    <li class="nav-header">Maintenance</li>
+                    
                     <li class="nav-item dropdown">
                       <a href="<?php echo base_url ?>admin/?page=departments" class="nav-link nav-departments">
                         <i class="nav-icon fas fa-th-list"></i>
                         <p>
-                          Department List
+                          Departments
                         </p>
                       </a>
+                      <hr>
                     </li>
                     <li class="nav-item dropdown">
                       <a href="<?php echo base_url ?>admin/?page=curriculum" class="nav-link nav-curriculum">
                         <i class="nav-icon fas fa-scroll"></i>
                         <p>
-                          Curriculum List
+                          Programs
                         </p>
                       </a>
+                      <hr>
                     </li>
                     <!-- <li class="nav-item dropdown">
                       <a href="<?php echo base_url ?>admin/?page=user/list" class="nav-link nav-user_list">
@@ -80,6 +85,7 @@
                           Settings
                         </p>
                       </a>
+                      <hr>
                     </li>
                     <?php endif; ?>
 
